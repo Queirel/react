@@ -1,8 +1,8 @@
 /** @format */
 
 import { useParams } from "react-router-dom";
-import Single from "../../components/single/Single";
-import { singleUser } from "../../data";
+// import Single from "../../components/single/Single";
+// import { singleUser } from "../../data";
 import "./user.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ const User = () => {
   console.log(id);
   //Fetch data and send to Single Component
 
-  const [users, setUsers] = useState([]);
+  const [users, setUsers]:any = useState([]);
 
   useEffect(() => {
     axios

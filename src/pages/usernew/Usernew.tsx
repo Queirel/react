@@ -12,12 +12,12 @@ const Usernew = () => {
     image: ''
   });
   
-  const handleInputChange = (e) => {
+  const handleInputChange = (e:any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault()
 
     axios.post('http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/users', formData)
