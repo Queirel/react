@@ -1,6 +1,7 @@
 import "./accessibilitynew.scss";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Accessibilitynew = () => {
   
@@ -63,15 +64,16 @@ const Accessibilitynew = () => {
             value={formData.description}
             onChange={handleInputChange}
             />
-            {/* <input 
-            type="password" 
-            placeholder="Confirm Password"
-            name="confirmpassword" 
-            autoComplete="new-password" 
-            required /> */}
-                        
             {/* <div className="avatar"><label>Select your avatar: </label><input type="file" name="avatar" accept="image/*" required /></div> */}
             <input type="submit" value="Add New" name="new" className="btn btn-block btn-primary cursor"/>
+            <Link to={"/Accessibility"}>
+          <input
+            type="button"
+            value="Back"
+            name="edit"
+            className="btn btn-block btn-danger cursor"
+          />
+          </Link>
           </form>
         </div>
       </div>

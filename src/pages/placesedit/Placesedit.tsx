@@ -1,19 +1,18 @@
 import { Link, useParams } from "react-router-dom";
-import "./user.scss";
+import "./places.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const User = () => {
+const Placesedit = () => {
   const { id } = useParams();
 
   console.log(id);
-
     const [formData, setFormData] = useState({
-      firstname: "",
-      lastname: "",
-      email: "",
-      // password: "",
-      image: "",
+      name: '',
+      description: '',
+      address: '',
+      latitude: '',
+      longitude: ''
     });
   
     const handleInputChange = (e: any) => {
@@ -23,7 +22,8 @@ const User = () => {
   
     const handleSubmit = (e:any) => {
       e.preventDefault();
-      axios.put(`http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/users/${id}`, formData)
+
+      axios.put(`http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/places/${id}`, formData)
         .then((response) => {
           console.log('Usuario actualizado con éxito:', response.data);
         })
@@ -35,7 +35,7 @@ const User = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/users/${id}`
+        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/places/${id}`
       )
       .then((response) => {
         const data = response.data;
@@ -49,9 +49,7 @@ const User = () => {
   return (
     <div className="body-contente">
       <div className="module">
-        <h1>Edit User</h1>
-        <hr />  
-        <br />
+        <h1>Edit Place</h1>
         <form
           className="form"
           method="post"
@@ -60,51 +58,52 @@ const User = () => {
           onSubmit={handleSubmit}
         >
           <div className="alert alert-error"></div>
-          <input
+          <input 
             id="text"
-            type="text"
-            placeholder="User Name"
-            name="firstname"
-            autoComplete="firstname"
+            type="text" 
+            placeholder="Place Name"
+            name="name" 
+            autoComplete="name" 
             required
-            value={formData.firstname}
+            value={formData.name}
             onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            placeholder="User Lastname"
-            name="lastname"
-            autoComplete="lastname"
+            />
+            <input 
+            type="text" 
+            placeholder="Address" 
+            name="address" 
+            autoComplete="address" 
+            required 
+            value={formData.address}
+            onChange={handleInputChange}
+            />
+            <input 
+            type="text" 
+            placeholder="Description" 
+            name="description" 
+            autoComplete="description" 
             required
-            value={formData.lastname}
+            value={formData.description}
             onChange={handleInputChange}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            autoComplete="email"
+            />
+            <input 
+            type="text" 
+            placeholder="Latitude" 
+            name="latitude" 
+            autoComplete="latitude" 
             required
-            value={formData.email}
+            value={formData.latitude}
             onChange={handleInputChange}
-          />
-          {/* <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            autoComplete="password"
+            />
+            <input 
+            type="text" 
+            placeholder="Longitude" 
+            name="longitude" 
+            autoComplete="longitude" 
             required
-            value={formData.password}
+            value={formData.longitude}
             onChange={handleInputChange}
-          /> */}
-          <input
-            type="text"
-            placeholder="Image URL"
-            name="image"
-            value={formData.image}
-            onChange={handleInputChange}
-          />
-
+            />
           {/* <div className="avatar"><label>Select your avatar: </label><input type="file" name="avatar" accept="image/*" required /></div> */}
           
           <input
@@ -113,7 +112,7 @@ const User = () => {
             name="edit"
             className="btn btn-block btn-primary cursor"
           />
-          <Link to={"/Users"}>
+          <Link to={"/Places"}>
           <input
             type="button"
             value="Back"
@@ -127,4 +126,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Placesedit;

@@ -13,7 +13,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import Accessibilities from "./pages/accessibilities/Accessibilities";
+import Accessibility from "./pages/accessibilities/Accessibilities";
 import Places from "./pages/places/Places";
 import Categories from "./pages/categories/Categories";
 import Recommended from "./pages/recommended/Recommended";
@@ -24,6 +24,11 @@ import Recommendednew from "./pages/recomendednew/Recomendednew";
 import Categorynew from "./pages/categorynew/Categorynew";
 // import Commentnew from "./pages/commentnew/Commentnew";
 import Placesnew from "./pages/placesnew/Placesnew";
+import Accessibilityedit from "./pages/accessibilityedit/Accessibilityedit";
+import Placesedit from "./pages/placesedit/Placesedit";
+import Recommendededit from "./pages/recommendededit/Recommendededit";
+import Categoriesedit from "./pages/categoriesedit/Categoriesedit";
+import Commentsee from "./pages/commentsee/Commentsee";
 
 
 const queryClient = new QueryClient();
@@ -71,11 +76,11 @@ function App() {
         },
         {
           path: "/accessibility",
-          element: <Accessibilities />,
+          element: <Accessibility />,
         },
         {
           path: "/accessibility/:id",
-          element: <Accessibilities />,
+          element: <Accessibilityedit />,
         },
         {
           path: "/accessibilitynew",
@@ -87,7 +92,7 @@ function App() {
         },
         {
           path: "/categories/:id",
-          element: <Categories />,
+          element: <Categoriesedit />, 
         },
         {
           path: "/categorynew",
@@ -99,7 +104,7 @@ function App() {
         },
         {
           path: "/recommended/:id",
-          element: <Recommended />,
+          element: <Recommendededit />,
         },
         {
           path: "/recommendednew",
@@ -111,7 +116,7 @@ function App() {
         },
         {
           path: "/comments/:id",
-          element: <Comments />,
+          element: <Commentsee />,
         },
         // {
         //   path: "/commentnew",
@@ -123,7 +128,7 @@ function App() {
         },
         {
           path: "/places/:id",
-          element: <Places />,
+          element: <Placesedit />,
         },
         {
           path: "/placesnew",

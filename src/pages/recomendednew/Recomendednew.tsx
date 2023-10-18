@@ -1,6 +1,7 @@
 import "./recomendednew.scss";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Recommendednew = () => {
   
@@ -63,31 +64,15 @@ const Recommendednew = () => {
             value={formData.image}
             onChange={handleInputChange}
             />
-            {/* <input 
-            type="password" 
-            placeholder="Password" 
-            name="password" 
-            autoComplete="password" 
-            required
-            value={formData.password}
-            onChange={handleInputChange}
-            /> */}
-            {/* <input 
-            type="password" 
-            placeholder="Confirm Password"
-            name="confirmpassword" 
-            autoComplete="new-password" 
-            required /> */}
-            {/* <input 
-            type="text" 
-            placeholder="Image URL" 
-            name="image"
-            value={formData.image}
-            onChange={handleInputChange}
-/> */}
-            
-            {/* <div className="avatar"><label>Select your avatar: </label><input type="file" name="avatar" accept="image/*" required /></div> */}
             <input type="submit" value="Add New" name="new" className="btn btn-block btn-primary cursor"/>
+            <Link to={"/Recommended"}>
+          <input
+            type="button"
+            value="Back"
+            name="edit"
+            className="btn btn-block btn-danger cursor"
+          />
+          </Link>
           </form>
         </div>
       </div>
