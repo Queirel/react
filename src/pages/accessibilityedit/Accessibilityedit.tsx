@@ -29,7 +29,7 @@ const Accessibilityedit = () => {
         // console.log("Usuario actualizado con éxito:", response.data);
         const status = response.status;
         setStatus(status);        })
-        .catch((error) => {
+        .catch(() => {
         // console.error("Error al actualizar usuario:", error);
         setStatus(400);        });
     };

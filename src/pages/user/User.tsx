@@ -35,7 +35,7 @@ const User = () => {
         const status = response.status;
         setStatus(status);
       })
-      .catch((error) => {
+      .catch(() => {
         // console.error("Error al actualizar usuario:", error);
         setStatus(400);
       });
