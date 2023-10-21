@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 const Accessibilityedit = () => {
   const { id } = useParams();
 
-  console.log(id);
-    const [formData, setFormData] = useState({
+  const [status, setStatus] = useState(0);
+
+  const [formData, setFormData] = useState({
       icon: '',
       name: '',
       description: ''
@@ -25,11 +26,12 @@ const Accessibilityedit = () => {
 
       axios.put(`http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/accessibility/${id}`, formData)
         .then((response) => {
-          console.log('Usuario actualizado con éxito:', response.data);
-        })
+        // console.log("Usuario actualizado con éxito:", response.data);
+        const status = response.status;
+        setStatus(status);        })
         .catch((error) => {
-          console.error('Error al actualizar usuario:', error);
-        });
+        // console.error("Error al actualizar usuario:", error);
+        setStatus(400);        });
     };
 
   useEffect(() => {
@@ -51,6 +53,11 @@ const Accessibilityedit = () => {
       <div className="module">
         <h1>Edit Accessibility</h1>
         <hr />  
+        <br />
+      <div className="module2">
+        <img src={formData.icon} alt="image" />
+      </div>
+      <div className="module3">
         <br />
         <form
           className="form"
@@ -104,9 +111,18 @@ const Accessibilityedit = () => {
             className="btn btn-block btn-danger cursor"
           />
           </Link>
+          <br />
+          {status == 200 ? (
+            <p style={{ color: "greenyellow" }}>Updated</p>
+          ) : (
+            ""
+          )}
+          {status == 400 ? <p style={{ color: "orange" }}>Some Error</p> : ""}
         </form>
       </div>
     </div>
+    </div>
+
   );
 };
 

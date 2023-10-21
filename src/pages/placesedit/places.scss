@@ -1,222 +1,43 @@
-.groupi {
-	position: relative;
-   }
-   
-   .inputi {
-	font-size: 16px;
-	padding: 10px 10px 10px 5px;
-	display: block;
-	width: 200px;
-	border: none;
-	border-bottom: 1px solid #fff;
-	background: transparent;
-   }
-   
-   .inputi:focus {
-	outline: none;
-   }
-   
-   label {
-	color: #999;
-	font-size: 18px;
-	font-weight: normal;
-	position: absolute;
-	pointer-events: none;
-	left: 5px;
-	top: 10px;
-	transition: 0.2s ease all;
-	-moz-transition: 0.2s ease all;
-	-webkit-transition: 0.2s ease all;
-   }
-   
-   .inputi:focus ~ label, .input:valid ~ label {
-	top: -20px;
-	font-size: 14px;
-	color: #fff;
-   }
-   
-   .bari {
-	position: relative;
-	display: block;
-	width: 200px;
-   }
-   
-   .bari:before, .bar:after {
-	content: '';
-	height: 2px;
-	width: 0;
-	bottom: 1px;
-	position: absolute;
-	background: #fff;
-	transition: 0.2s ease all;
-	-moz-transition: 0.2s ease all;
-	-webkit-transition: 0.2s ease all;
-   }
-   
-  
 
-   .bari:before {
-	left: 50%;
+.module{
+	display: flex;
+		flex-direction: column !important;
+		justify-content: center	!important;
+		// align-content: center !important;
+
    }
-   
-   .bari:after {
-	right: 50%;
-   }
-   
-   .inputi:focus ~ .bar:before, .input:focus ~ .bar:after {
-	width: 50%;
-   }
-   
-   .highlighti {
-	position: absolute;
-	height: 60%;
-	width: 100px;
-	top: 25%;
-	left: 0;
-	pointer-events: none;
-	opacity: 0.5;
-   }
-   
-   .inputi:focus ~ .highlight {
-	animation: inputHighlighter 0.3s ease;
-   }
-   
-   @keyframes inputHighlighter {
-	from {	
-	 background: #fff;
+   .module2{
+	display: flex;
+	flex-direction: column !important;
+	justify-content: center	!important;
+	align-items: center;
+	img{
+		width: 50%;
+		border-radius: 50%;
 	}
-   
-	to {
-	 width: 0;
-	 background: transparent;
-	}
-   }
-   .btn-danger{
-	background-color: firebrick !important;
-   }
-// * {
-// 	// box-sizing: border-box;
-// }
-
-// .round{
-// width: 100px;
-// }
-
-// body {
-// 	background-color: #28223F;
-// 	font-family: Montserrat, sans-serif;
+	// width: 50%;
+	// height: 50%;
+	// align-items: center !important;
 	
-// 	// display: flex;
-// 	// align-items: center;
-// 	// justify-content: center;
-// 	// flex-direction: column;
+}
+.module3{
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center	!important;
+	align-items: center;
+width: 100%;
+form{
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center	!important;
+	align-items: center !important;
+width: 100%;
+a{
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center	!important;
+	align-items: center !important;
+width: 100%;
+}
+}}
 
-// 	min-height: 100vh;
-// 	margin: 0;
-// }
-
-// h3 {
-// 	margin: 10px 0;
-// }
-
-// h6 {
-// 	margin: 5px 0;
-// }
-
-// p {
-// 	font-size: 14px;
-// 	line-height: 21px;
-// }
-
-// .card-container {
-// 	background-color: #231E39;
-// 	border-radius: 5px;
-// 	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
-// 	color: #B3B8CD;
-// 	padding-top: 30px;
-// 	position: absolute;
-//     // align-items: center;
-// 	width: 350px;
-// 	max-width: 100%;
-// 	text-align: center;
-// }
-
-// // .card-container .pro {
-// // 	color: #231E39;
-// // 	background-color: #FEBB0B;
-// // 	border-radius: 3px;
-// // 	font-size: 14px;
-// // 	font-weight: bold;
-// // 	padding: 3px 7px;
-// // 	position: absolute;
-// // 	top: 30px;
-// // 	left: 30px;
-// // }
-
-// .card-container .round {
-// 	border: 1px solid #03BFCB;
-// 	border-radius: 50%;
-// 	padding: 7px;
-// }
-
-// button.primary {
-// 	background-color: mediumseagreen;
-// 	border: 1px solid #fff;
-// 	border-radius: 3px;
-// 	color: black;
-// 	font-family: Montserrat, sans-serif;
-// 	font-weight: 500;
-// 	padding: 10px 25px;
-// }
-
-// button.primary.ghost {
-// 	background-color: brown;
-// 	color: #fff;
-// }
-
-// .skills {
-// 	background-color: #1F1A36;
-// 	text-align: left;
-// 	padding: 15px;
-// 	margin-top: 30px;
-// }
-
-// .skills ul {
-// 	list-style-type: none;
-// 	margin: 0;
-// 	padding: 0;
-// }
-
-// .skills ul li {
-// 	border: 1px solid #2D2747;
-// 	border-radius: 2px;
-// 	display: inline-block;
-// 	font-size: 12px;
-// 	margin: 0 7px 7px 0;
-// 	padding: 7px;
-// }
-
-// footer {
-//     background-color: #222;
-//     color: #fff;
-//     font-size: 14px;
-//     bottom: 0;
-//     position: fixed;
-//     left: 0;
-//     right: 0;
-//     text-align: center;
-//     z-index: 999;
-// }
-
-// footer p {
-//     margin: 10px 0;
-// }
-
-// footer i {
-//     color: red;
-// }
-
-// footer a {
-//     color: #3c97bf;
-//     text-decoration: none;
-// }

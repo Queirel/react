@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 const Placesedit = () => {
   const { id } = useParams();
 
-  console.log(id);
+  const [status, setStatus] = useState(0);
+
     const [formData, setFormData] = useState({
       name: '',
       description: '',
@@ -25,11 +26,12 @@ const Placesedit = () => {
 
       axios.put(`http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/places/${id}`, formData)
         .then((response) => {
-          console.log('Usuario actualizado con éxito:', response.data);
-        })
+        // console.log("Usuario actualizado con éxito:", response.data);
+        const status = response.status;
+        setStatus(status);        })
         .catch((error) => {
-          console.error('Error al actualizar usuario:', error);
-        });
+        // console.error("Error al actualizar usuario:", error);
+        setStatus(400);        });
     };
 
   useEffect(() => {
@@ -50,6 +52,8 @@ const Placesedit = () => {
     <div className="body-contente">
       <div className="module">
         <h1>Edit Place</h1>
+        <div className="module3">
+
         <form
           className="form"
           method="post"
@@ -120,9 +124,18 @@ const Placesedit = () => {
             className="btn btn-block btn-danger cursor"
           />
           </Link>
+          <br />
+          {status == 200 ? (
+            <p style={{ color: "greenyellow" }}>Updated</p>
+          ) : (
+            ""
+          )}
+          {status == 400 ? <p style={{ color: "orange" }}>Some Error</p> : ""}
         </form>
       </div>
     </div>
+    </div>
+
   );
 };
 
