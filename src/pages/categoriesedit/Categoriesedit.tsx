@@ -26,7 +26,7 @@ const Categoriesedit = () => {
 
     axios
       .put(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/categories/${id}`,
+        `${import.meta.env.VITE_URL}/categories/${id}`,
         formData
       )
       .then((response) => {
@@ -43,7 +43,7 @@ const Categoriesedit = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/categories/${id}`
+        `${import.meta.env.VITE_URL}/categories/${id}`
       )
       .then((response) => {
         const data = response.data;

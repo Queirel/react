@@ -26,7 +26,7 @@ const Recommendededit = () => {
 
     axios
       .put(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/recommended/${id}`,
+        `${import.meta.env.VITE_URL}/recommended/${id}`,
         formData
       )
       .then((response) => {
@@ -43,7 +43,7 @@ const Recommendededit = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/recommended/${id}`
+        `${import.meta.env.VITE_URL}/recommended/${id}`
       )
       .then((response) => {
         const data = response.data;

@@ -24,7 +24,7 @@ const Placesedit = () => {
     const handleSubmit = (e:any) => {
       e.preventDefault();
 
-      axios.put(`http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/places/${id}`, formData)
+      axios.put(`${import.meta.env.VITE_URL}/places/${id}`, formData)
         .then((response) => {
         // console.log("Usuario actualizado con éxito:", response.data);
         const status = response.status;
@@ -37,7 +37,7 @@ const Placesedit = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/places/${id}`
+        `${import.meta.env.VITE_URL}/places/${id}`
       )
       .then((response) => {
         const data = response.data;

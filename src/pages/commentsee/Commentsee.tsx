@@ -34,7 +34,7 @@ const Commentsee = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/comments/${id}`
+        `${import.meta.env.VITE_URL}/comments/${id}`
       )
       .then((response) => {
         const data = response.data;

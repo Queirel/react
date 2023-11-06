@@ -24,7 +24,7 @@ const Usernew = () => {
 
     axios
       .post(
-        "http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/users",
+        `${import.meta.env.VITE_URL}/users`,
         formData
       )
       .then((response) => {

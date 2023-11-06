@@ -44,7 +44,7 @@ const Places = () => {
 
     useEffect(() => {
       axios
-        .get("http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/places")
+        .get(`${import.meta.env.VITE_URL}/places`)
         .then((response) => {
           const data = response.data;
           setPlaces(data);

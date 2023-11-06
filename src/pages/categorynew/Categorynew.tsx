@@ -19,7 +19,7 @@ const Categorynew = () => {
   const handleSubmit = (e:any) => {
     e.preventDefault()
 
-    axios.post('http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/categories', formData)
+    axios.post(`${import.meta.env.VITE_URL}/categories`, formData)
       .then((response) => {
         console.log('Respuesta del servidor:', response.data);
       })

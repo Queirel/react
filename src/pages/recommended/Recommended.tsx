@@ -27,7 +27,7 @@ import { Link } from "react-router-dom";
     const [recommended, setRecommended] = useState([])
 
       useEffect(() => {
-        axios.get('http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/recommended')
+        axios.get(`${import.meta.env.VITE_URL}/recommended`)
           .then((response) => {
             const data = response.data;
             setRecommended(data);

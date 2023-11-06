@@ -27,7 +27,7 @@ const User = () => {
     e.preventDefault();
     axios
       .put(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/users/${id}`,
+        `${import.meta.env.VITE_URL}/users/${id}`,
         formData
       )
       .then((response) => {
@@ -44,7 +44,7 @@ const User = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/users/${id}`
+        `${import.meta.env.VITE_URL}/users/${id}`
       )
       .then((response) => {
         const data = response.data;

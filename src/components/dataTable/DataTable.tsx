@@ -16,7 +16,7 @@ type Props = {
 const DataTable = (props: Props) => {
 
   const handleDelete = (id: number) => {
-      axios.delete(`http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/${props.slug}/${id}`)
+      axios.delete(`${import.meta.env.VITE_URL}/${props.slug}/${id}`)
         .then((response) => {
           console.log('Eliminado con éxito:', response.data);
           window.location.reload();
@@ -41,7 +41,7 @@ const DataTable = (props: Props) => {
             <img src="/view.svg" alt="Edit" />
           }
           </Link>
-          <Link to={`/${props.slug}`}>
+          <Link to={`/`}>
           
           <div className="delete" onClick={() => handleDelete(params.row.id)}>
             <img src="/delete.svg" alt="Delete" />

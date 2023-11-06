@@ -33,7 +33,7 @@ const Accessibility = () => {
   const [accessibility, setAccessibility] = useState([])
 
     useEffect(() => {
-      axios.get('http://ec2-3-141-0-71.us-east-2.compute.amazonaws.com:3000/accessibility')
+      axios.get(`${import.meta.env.VITE_URL}/accessibility`)
         .then((response) => {
           const data = response.data;
           setAccessibility(data);
