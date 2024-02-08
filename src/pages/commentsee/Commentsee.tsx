@@ -80,7 +80,7 @@ const Commentsee = () => {
             name="edit"
             className="btn btn-block btn-primary cursor"
           /> */}
-          <Link to={"/Categories"}>
+          <Link to={"/comments"}>
           <input
             type="button"
             value="Back"

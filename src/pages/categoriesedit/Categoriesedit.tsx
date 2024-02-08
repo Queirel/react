@@ -1,5 +1,3 @@
-/** @format */
-
 import { Link, useParams } from "react-router-dom";
 import "./categories.scss";
 import axios from "axios";
@@ -16,6 +14,7 @@ const Categoriesedit = () => {
     description: "",
   });
 
+  
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

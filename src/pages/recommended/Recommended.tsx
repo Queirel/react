@@ -6,20 +6,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 50 },
+    { field: "id", headerName: "ID", width: 200 },
     {
-      field: "image",
-      headerName: "Icon",
-      width: 75,
-      renderCell: (params) => {
-        return <img src={params.row.image || "/noavatar.png"} alt="" />;
-      },
-    },
-    {
-      field: "name",
+      field: "placeid",
       type: "string",
-      headerName: "Recommended",
-      width: 150,
+      headerName: "Place Id",
+      width: 300,
     },
   ];
 

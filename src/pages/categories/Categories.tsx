@@ -8,7 +8,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 50 },
+  { field: "id", headerName: "ID", width: 100 },
   {
     field: "image",
     headerName: "Icon",

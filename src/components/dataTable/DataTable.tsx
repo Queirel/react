@@ -1,8 +1,6 @@
-import {
-  DataGrid,
-  GridColDef,
-  GridToolbar,
-} from "@mui/x-data-grid";
+/** @format */
+
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import "./dataTable.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -14,18 +12,18 @@ type Props = {
 };
 
 const DataTable = (props: Props) => {
-
   const handleDelete = (id: number) => {
-      axios.delete(`${import.meta.env.VITE_URL}/${props.slug}/${id}`)
-        .then((response) => {
-          console.log('Eliminado con éxito:', response.data);
-          window.location.reload();
-        })
-        .catch((error) => {
-          console.error('Error al eliminar:', error);
-        });
-    };
-    
+    axios
+      .delete(`${import.meta.env.VITE_URL}/${props.slug}/${id}`)
+      .then((response) => {
+        console.log("Eliminado con éxito:", response.data);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error al eliminar:", error);
+      });
+  };
+
   const actionColumn: GridColDef = {
     field: "action",
     headerName: "Action",
@@ -33,20 +31,39 @@ const DataTable = (props: Props) => {
     renderCell: (params) => {
       return (
         <div className="action">
-          <Link to={`/${props.slug}/${params.row.id}`}>
-          {props.slug == "comments"
-            ?
-            <img src="/view.png" alt="Edit" />
-          :
-            <img src="/view.svg" alt="Edit" />
-          }
-          </Link>
-          <Link to={`/`}>
+          {props.slug == "places" ? ( <div className="action"><Link to={`/${props.slug}/${params.row.id}`}>
           
-          <div className="delete" onClick={() => handleDelete(params.row.id)}>
-            <img src="/delete.svg" alt="Delete" />
-          </div>
+              
+                <img src="/view.svg" alt="Edit" />
+              
+          </Link> 
+          <Link to={`/${props.slug}`}>
+            <div className="delete" onClick={() => handleDelete(params.row.places_id)}>
+              <img src="/delete.svg" alt="Delete" />
+            </div>
           </Link>
+          </div>
+          ):
+          (
+        <div className="action">
+          {props.slug != "recommended" ? (
+            <Link to={`/${props.slug}/${params.row.id}`}>
+              {props.slug == "comments" ? (
+                <img src="/view.png" alt="Edit" />
+              ) : (
+                <img src="/view.svg" alt="Edit" />
+              )}
+            </Link>
+          ) : (
+            <></>
+          )}
+          <Link to={`/${props.slug}`}>
+            <div className="delete" onClick={() => handleDelete(params.row.id)}>
+              <img src="/delete.svg" alt="Delete" />
+            </div>
+          </Link>
+        </div>
+        )}
         </div>
       );
     },
@@ -54,6 +71,7 @@ const DataTable = (props: Props) => {
   return (
     <div className="dataTable">
       <DataGrid
+        getRowId={(row) => row.places_id || row.id}
         className="dataGrid"
         rows={props.rows}
         columns={[...props.columns, actionColumn]}
@@ -72,10 +90,10 @@ const DataTable = (props: Props) => {
           },
         }}
         pageSizeOptions={[5]}
-        // checkboxSelection  
+        // checkboxSelection
         disableRowSelectionOnClick
         disableColumnFilter
-        disableDensitySelector
+        // disableDensitySelector
         disableColumnSelector
       />
     </div>

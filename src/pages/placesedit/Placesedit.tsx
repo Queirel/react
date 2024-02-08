@@ -11,9 +11,8 @@ const Placesedit = () => {
     const [formData, setFormData] = useState({
       name: '',
       description: '',
-      address: '',
-      latitude: '',
-      longitude: ''
+      placemapid: '',
+      categoryid: '',
     });
   
     const handleInputChange = (e: any) => {
@@ -74,11 +73,11 @@ const Placesedit = () => {
             />
             <input 
             type="text" 
-            placeholder="Address" 
-            name="address" 
-            autoComplete="address" 
+            placeholder="Place Map Id" 
+            name="placemapid" 
+            autoComplete="placemapid" 
             required 
-            value={formData.address}
+            value={formData.placemapid}
             onChange={handleInputChange}
             />
             <input 
@@ -92,21 +91,13 @@ const Placesedit = () => {
             />
             <input 
             type="text" 
-            placeholder="Latitude" 
-            name="latitude" 
-            autoComplete="latitude" 
-            required
-            value={formData.latitude}
+            placeholder="Category Id" 
+            name="categoryid" 
+            autoComplete="categoryid" 
+            // required
+            value={formData.categoryid}
             onChange={handleInputChange}
-            />
-            <input 
-            type="text" 
-            placeholder="Longitude" 
-            name="longitude" 
-            autoComplete="longitude" 
-            required
-            value={formData.longitude}
-            onChange={handleInputChange}
+            
             />
           {/* <div className="avatar"><label>Select your avatar: </label><input type="file" name="avatar" accept="image/*" required /></div> */}
           

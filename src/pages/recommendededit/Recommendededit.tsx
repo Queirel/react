@@ -11,9 +11,7 @@ const Recommendededit = () => {
   const [status, setStatus] = useState(0);
 
   const [formData, setFormData] = useState({
-    name: "",
-    place: "",
-    image: "",
+    placeid: "",
   });
 
   const handleInputChange = (e: any) => {
@@ -61,7 +59,7 @@ const Recommendededit = () => {
         <hr />
         <br />
         <div className="module22">
-          <img src={formData.image} alt="image" />
+          {/* <img src={formData.image} alt="image" /> */}
         </div>
         <div className="module3">
           <br />
@@ -76,14 +74,14 @@ const Recommendededit = () => {
             <input
               id="text"
               type="text"
-              placeholder="Recommended"
-              name="name"
-              autoComplete="name"
+              placeholder="Place Id"
+              name="placeid"
+              autoComplete="placeid"
               required
-              value={formData.name}
+              value={formData.placeid}
               onChange={handleInputChange}
             />
-            <input
+            {/* <input
               type="text"
               placeholder="Map Place"
               name="place"
@@ -100,7 +98,7 @@ const Recommendededit = () => {
               required
               value={formData.image}
               onChange={handleInputChange}
-            />
+            /> */}
             {/* <div className="avatar"><label>Select your avatar: </label><input type="file" name="avatar" accept="image/*" required /></div> */}
 
             <input

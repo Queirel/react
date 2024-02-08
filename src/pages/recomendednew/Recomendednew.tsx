@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 const Recommendednew = () => {
   
   const [formData, setFormData] = useState({
-    name: '',
-    place: '',
-    image: ''
+    placeid: '',
   });
   
   const handleInputChange = (e:any) => {
@@ -39,14 +37,14 @@ const Recommendednew = () => {
             <input 
             id="text"
             type="text" 
-            placeholder="Recommended"
-            name="name" 
-            autoComplete="name" 
+            placeholder="Place Id"
+            name="placeid" 
+            autoComplete="placeid" 
             required
-            value={formData.name}
+            value={formData.placeid}
             onChange={handleInputChange}
             />
-            <input 
+            {/* <input 
             type="text" 
             placeholder="Map Place" 
             name="place" 
@@ -63,7 +61,7 @@ const Recommendednew = () => {
             required
             value={formData.image}
             onChange={handleInputChange}
-            />
+            /> */}
             <input type="submit" value="Add New" name="new" className="btn btn-block btn-primary cursor"/>
             <Link to={"/Recommended"}>
           <input

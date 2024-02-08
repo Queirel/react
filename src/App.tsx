@@ -1,5 +1,5 @@
 import Home from "./pages/home/Home";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet  } from "react-router-dom";
 import Users from "./pages/users/Users";
 // import Products from "./pages/products/Products";
 import Navbar from "./components/navbar/Navbar";
@@ -29,11 +29,61 @@ import Placesedit from "./pages/placesedit/Placesedit";
 import Recommendededit from "./pages/recommendededit/Recommendededit";
 import Categoriesedit from "./pages/categoriesedit/Categoriesedit";
 import Commentsee from "./pages/commentsee/Commentsee";
+import Profile from "./pages/profile/profile";
+import { useEffect, useState } from "react";
+// import { useState } from "react";
 
 
 const queryClient = new QueryClient();
 
 function App() {
+
+  const [token, setToken] = useState(localStorage.getItem('token')); // Reemplaza 'miToken' con el nombre real de tu token
+  const [isTokenExpired, setIsTokenExpired] = useState(false);
+
+  // Función para cerrar sesión
+  const logout = () => {
+    // Lógica de cierre de sesión (puede incluir la solicitud al servidor para invalidar el token, etc.)
+
+    // Eliminar el token del localStorage
+    localStorage.removeItem('token'); // Reemplaza 'miToken' con el nombre real de tu token
+    setToken(null);
+  };
+
+  useEffect(() => {
+    const checkTokenExpiration = () => {
+      const storedToken = localStorage.getItem('token'); // Reemplaza 'miToken' con el nombre real de tu token
+      console.log('chequeando')
+      if (storedToken) {
+        const decodedToken = JSON.parse(atob(storedToken.split('.')[1])); // Decodificar el token JWT
+        const expirationTime = (decodedToken.exp * 1000) ; // Convertir a milisegundos
+        // const expirationTime = (decodedToken.exp * 1000) - 86370000; // Convertir a milisegundos
+        const currentTime = new Date().getTime();
+        if (currentTime > expirationTime) {
+          setIsTokenExpired(true);
+          logout();
+          window.location.reload()
+        } else {
+          setIsTokenExpired(false);
+        }
+      }
+    };
+
+    // Verificar el estado del token al montar el componente
+    checkTokenExpiration();
+
+    // Configurar un temporizador para verificar la expiración del token periódicamente
+    const tokenCheckInterval = setInterval(() => {
+      checkTokenExpiration();
+    }, 5000); // Verificar cada minuto
+
+    // Limpiar el temporizador al desmontar el componente
+    return () => {
+      clearInterval(tokenCheckInterval);
+    };
+  }, []);
+
+
   const Layout = () => {
     return (
       <div className="main">
@@ -55,6 +105,10 @@ function App() {
 
   const router = createBrowserRouter([
     {
+      path: "/login",
+      element: <Login />,
+    },
+    {
       path: "/",
       element: <Layout />,
       children: [
@@ -65,6 +119,10 @@ function App() {
         {
           path: "/users",
           element: <Users />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
         },
         {
           path: "/users/:id",
@@ -136,10 +194,7 @@ function App() {
         },
       ],
     },
-    {
-      path: "/login",
-      element: <Login />,
-    },
+
   ]);
 
   return <RouterProvider router={router} />;
