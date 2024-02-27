@@ -23,6 +23,10 @@ const User = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const backClick = () =>{
+    window.history.back();
+  }
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     axios
@@ -134,14 +138,15 @@ const User = () => {
             name="edit"
             className="btn btn-block btn-danger cursor"
           />       */}
-          <Link className="btn-block" to={"/Users"}>
+          {/* <Link className="btn-block" to={"/Users"}> */}
             <input
               type="button"
               value="Back"
               name="edit"
               className="btn btn-danger cursor"
+              onClick={backClick}
             />
-          </Link>
+          {/* </Link> */}
           <br />
           {status == 200 ? (
             <p style={{ color: "greenyellow" }}>Updated</p>

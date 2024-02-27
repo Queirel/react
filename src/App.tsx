@@ -46,7 +46,7 @@ function App() {
     // Lógica de cierre de sesión (puede incluir la solicitud al servidor para invalidar el token, etc.)
 
     // Eliminar el token del localStorage
-    localStorage.removeItem('token'); // Reemplaza 'miToken' con el nombre real de tu token
+    localStorage.clear(); // Reemplaza 'miToken' con el nombre real de tu token
     setToken(null);
   };
 
