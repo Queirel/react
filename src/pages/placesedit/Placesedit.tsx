@@ -4,6 +4,7 @@ import "./places.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
+import FileUpload from '../../components/upload files/uploadfiles';
 import GooglePlacesAutocomplete, {
   geocodeByPlaceId,
 } from "react-google-places-autocomplete";
@@ -21,7 +22,73 @@ const Placesedit = () => {
     description: "",
     placemapid: "",
     categoryid: "",
+    lastUserUpdate: ""
   });
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedFiless, setSelectedFiless] = useState([]);
+  const [previewUrls, setPreviewUrls]: any = useState([]);
+
+  const handleFileChanges = (event: any): any => {
+    const files = event.target.files;
+    const filesArray: any = Array.from(files);
+
+    setSelectedFiless(filesArray);
+
+    const urls: any = [];
+    for (let i = 0; i < filesArray.length; i++) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        urls.push(reader.result);
+        if (urls.length === filesArray.length) {
+          setPreviewUrls(urls);
+        }
+      };
+      reader.readAsDataURL(filesArray[i]);
+    }
+  };
+
+
+
+
+
+  const handleFileChange = (event: any) => {
+    setSelectedFiles(Array.from(event.target.files));
+  };
+  // const MultiFileUpload = () => {
+  //   const [selectedFiles, setSelectedFiles] = useState([]);
+  
+  //   const handleFileChange = (event: any) => {
+  //     setSelectedFiles(Array.from(event.target.files));
+  //   };
+  
+  //   const handleSubmit = async (event: any) => {
+  //     event.preventDefault();
+  
+  //     const formData = new FormData();
+  //     selectedFiles.forEach((file, index) => {
+  //       formData.append(`file${index}`, file);
+  //     });
+      
+  //     try {
+  //       const response = await axios.post(`${import.meta.env.VITE_URL}/places/file`, formData);
+  //       console.log('Archivos subidos:', response.data);
+  //       // Puedes manejar la respuesta del servidor aquí
+  //     } catch (error) {
+  //       console.error('Error al subir los archivos:', error);
+  //       // Puedes manejar los errores aquí
+  //     }
+  //   };
+  
+  //   return (
+  //     // <form onSubmit={handleSubmit}>
+      
+  //       <input type="file" multiple onChange={handleFileChange} />
+        
+  //     //   {/* <button type="submit">Subir archivos</button> */}
+  //     // </form>
+  //   );
+  // }
+
 
   const Maps = () => {
     return (
@@ -31,7 +98,7 @@ const Placesedit = () => {
             apiKey="AIzaSyARzhJXy7VYFW_MJ16-J55rS8REHWwc7c0"
             selectProps={{
               openMenuOnClick: false,
-              required: true,
+              // required: true,
               defaultInputValue: addressName,
               value: values,
               onChange: changeValue,
@@ -77,7 +144,8 @@ const Placesedit = () => {
             }}
           />
         </div>
-        <APIProvider apiKey="AIzaSyARzhJXy7VYFW_MJ16-J55rS8REHWwc7c0">
+        {/* <FileUpload/> */}
+       <APIProvider apiKey="AIzaSyARzhJXy7VYFW_MJ16-J55rS8REHWwc7c0">
           <br />
           <div
             className="maps"
@@ -88,6 +156,7 @@ const Placesedit = () => {
               width: "100%",
             }}
           >
+            
             <Map
               defaultZoom={15}
               center={{ lat, lng }}
@@ -96,7 +165,7 @@ const Placesedit = () => {
               <AdvancedMarker position={{ lat, lng }}></AdvancedMarker>
             </Map>
           </div>
-        </APIProvider>
+        </APIProvider> 
       </>
     );
   };
@@ -137,7 +206,7 @@ const Placesedit = () => {
       const longitude = response[0].geometry.location.lng();
       setLat(latitude);
       setLng(longitude);
-      setAddressName(response[0].formatted_address);
+        (response[0].formatted_address);
       setFormData({ ...formData, placemapid: response[0].place_id });
       console.log(response[0].place_id);
     });
@@ -148,7 +217,7 @@ const Placesedit = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     axios
       .put(`${import.meta.env.VITE_URL}/places/${id}`, formData)
@@ -159,10 +228,51 @@ const Placesedit = () => {
       .catch(() => {
         setStatus(400);
       });
+
+      const formDatas = new FormData();
+      selectedFiless.forEach((file, index) => {
+        formDatas.append(`file${index}`, file);
+      });
+      
+      try {
+        console.log('Archivos subidos:', selectedFiless);  
+        const response = await axios.post(`${import.meta.env.VITE_URL}/places/file`, selectedFiless);
+        console.log('Archivos subidos:', response.data);
+        // Puedes manejar la respuesta del servidor aquí
+      } catch (error) {
+        console.error('Error al subir los archivos:', error);
+        // Puedes manejar los errores aquí
+      }
   };
 
+
+  const handlesSubmit = async (e: any) => {
+    e.preventDefault();
+
+      const formDatas = new FormData();
+      selectedFiles.forEach((file, index) => {
+        formDatas.append(`file${index}`, file);      });
+      
+      try {
+        console.log('Archivos subidos:', formDatas);  
+        const response = await axios.post(`${import.meta.env.VITE_URL}/places/file`, formDatas);
+        console.log('Archivos subidos:', response.data);
+        // Puedes manejar la respuesta del servidor aquí
+      } catch (error) {
+        console.error('Error al subir los archivos:', error);
+        // Puedes manejar los errores aquí
+      }
+  };
+
+
   return (
+
     <div className="module">
+          <form onSubmit={handlesSubmit}>
+                <input style={{ display: 'none' }} type="file" multiple onChange={handleFileChanges} />
+<input type="submit"/>
+    </form>
+
       <h1>Edit Place</h1>
       <div className="modulse3">
         <form
@@ -173,6 +283,24 @@ const Placesedit = () => {
           onSubmit={handleSubmit}
         >
           <div className="alert alert-error"></div>
+          
+
+          <div>
+      {/* <input type="file" multiple onChange={handleFileChange} /> */}
+
+      {previewUrls.length > 0 && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px' }}>
+        {previewUrls.map((url:any, index:any) => (
+          <div key={index} style={{ maxWidth: '200px', maxHeight: '120px', overflow: 'hidden' }}>
+            <img src={url} alt={`Imagen ${index}`} style={{ border:10 , borderColor: "black", borderRadius: 10, width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        ))}
+      </div>
+      )}
+    </div>
+
+    
+          <br />
           <input
             id="text"
             type="text"
@@ -203,6 +331,7 @@ const Placesedit = () => {
           />
           <Maps />
           <br />
+
           <input
             type="submit"
             value="Accept"

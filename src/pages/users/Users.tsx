@@ -157,17 +157,19 @@ const Users = () => {
         className="dataGrid"
         autoHeight
         rows={users}
+        filterMode="server"
         paginationMode="server"
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
         rowCount={rowsCount}
         columns={[...columns, actionColumn]}
-        initialState={{
-          pagination: {
-            paginationModel: {
-            },
-          },
-        }}
+        // initialState={{
+        //   filter: {filterModel: {quickFilterLogicOperator:}}
+        //   pagination: {
+        //     paginationModel: {
+        //     },
+        //   },
+        // }}
         slots={{ toolbar: GridToolbar }}
         slotProps={{
           toolbar: {

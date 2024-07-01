@@ -1,5 +1,3 @@
-/** @format */
-
 import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 import { useState } from "react";
 import GooglePlacesAutocomplete, {
@@ -10,6 +8,7 @@ const PlaceAutocomplete = ({ id, placeid }: any) => {
   const [lng, setLng] = useState(0);
   const [showMap, setShow] = useState(false);
   const [values, setValues]: any = useState();
+
 
   const changeValue = async (value: any) => {
     setValues(value);
@@ -22,6 +21,7 @@ const PlaceAutocomplete = ({ id, placeid }: any) => {
       id(response[0].place_id);
     });
   };
+
 
   return (
     <>
@@ -50,7 +50,7 @@ const PlaceAutocomplete = ({ id, placeid }: any) => {
                 ...provided,
                 color: "#dedcdc",
                 fontSize: 14,
-                fontFamily: "revert",
+                fontFamily: "revert"
               }),
               control: (provided) => ({
                 ...provided,
@@ -63,6 +63,7 @@ const PlaceAutocomplete = ({ id, placeid }: any) => {
               }),
               container: (provided) => ({
                 ...provided,
+                
               }),
               dropdownIndicator: (provided: any) => ({
                 ...provided,
@@ -75,29 +76,23 @@ const PlaceAutocomplete = ({ id, placeid }: any) => {
             },
           }}
         />
-      </div>
-      {showMap && (
-        <APIProvider apiKey="AIzaSyARzhJXy7VYFW_MJ16-J55rS8REHWwc7c0">
-          <br />
-          <div
-            className="maps"
-            style={{
-              border: 1,
-              borderRadius: 20,
-              height: "50vh",
-              width: "100%",
-            }}
-          >
-            <Map
-              defaultZoom={15}
-              center={{ lat, lng }}
-              mapId="19418ea9bcdd3404"
-            >
-              <AdvancedMarker position={{ lat, lng }}></AdvancedMarker>
-            </Map>
-          </div>
-        </APIProvider>
-      )}
+      </div>{showMap && 
+      <APIProvider apiKey="AIzaSyARzhJXy7VYFW_MJ16-J55rS8REHWwc7c0">
+        <br />
+        <div
+          className="maps"
+          style={{
+            border: 1,
+            borderRadius: 20,
+            height: "50vh",
+            width: "100%",
+          }}
+        >
+          <Map defaultZoom={15} center={{ lat, lng }} mapId="19418ea9bcdd3404">
+            <AdvancedMarker position={{ lat, lng }}></AdvancedMarker>
+          </Map>
+        </div>
+      </APIProvider>}
     </>
   );
 };
